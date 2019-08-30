@@ -1,0 +1,4 @@
+resources:
+  - alpine-pod.yaml
+commonLabels:
+  kustomize: enabled
