@@ -1,0 +1,3 @@
+[submodule "github.com/kubernetes-sigs/kustomize"]
+	path = vendor/github.com/kubernetes-sigs/kustomize
+	url = git@github.com:kubernetes-sigs/kustomize
