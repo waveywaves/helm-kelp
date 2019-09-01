@@ -1,6 +1,6 @@
 HELM_HOME := ~/.helm
 HELM_PLUGIN_DIR ?= $(HELM_HOME)/plugins/
-HELM_PLUGIN_NAME := kust
+HELM_PLUGIN_NAME := kelp
 HAS_DEP := $(shell command -v dep;)
 DEP_VERSION := v0.5.0
 VERSION := $(shell sed -n -e 's/version:[ "]*\([^"]*\).*/\1/p' plugin.yaml)

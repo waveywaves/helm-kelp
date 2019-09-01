@@ -1,8 +1,8 @@
-name: "kust"
+name: "kelp"
 version: "0.0.1"
 usage: "Apply kustomize to helm charts before processing the helm templates"
 description: "Apply kustomize to helm charts before processing the helm templates"
-command: "$HELM_PLUGIN_DIR/bin/kust"
+command: "$HELM_PLUGIN_DIR/bin/kelp"
 hooks:
   install: "$HELM_PLUGIN_DIR/install-binary.sh"
   update: "$HELM_PLUGIN_DIR/install-binary.sh"
