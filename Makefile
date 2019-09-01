@@ -1,6 +1,6 @@
 HELM_HOME := ~/.helm
 HELM_PLUGIN_DIR ?= $(HELM_HOME)/plugins/
-HELM_PLUGIN_NAME := bin/kust
+HELM_PLUGIN_NAME := kust
 HAS_DEP := $(shell command -v dep;)
 DEP_VERSION := v0.5.0
 VERSION := $(shell sed -n -e 's/version:[ "]*\([^"]*\).*/\1/p' plugin.yaml)
@@ -9,7 +9,7 @@ LDFLAGS := "-X main.version=${VERSION}"
 
 .PHONY: install
 install: bootstrap build
-	cp ${HELM_PLUGIN_NAME} $(HELM_PLUGIN_DIR)
+	cp bin/${HELM_PLUGIN_NAME} $(HELM_PLUGIN_DIR)
 	cp plugin.yaml $(HELM_PLUGIN_DIR)
 
 .PHONY: hookInstall
