@@ -25,9 +25,20 @@
   revision = "298182f68c66c05229eb03ac171abe6e309ee79a"
   version = "v1.0.3"
 
+[[projects]]
+  branch = "master"
+  digest = "1:0012508fab4688452d1d92657db5fb25ab43a9f43ee66d189203a24f21c70f6d"
+  name = "github.com/waveywaves/helm-kustomize-plugin"
+  packages = ["cmd"]
+  pruneopts = "UT"
+  revision = "352a7dc5bd765040b5026289b401cdb93ff86c1d"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  input-imports = ["github.com/spf13/cobra"]
+  input-imports = [
+    "github.com/spf13/cobra",
+    "github.com/waveywaves/helm-kustomize-plugin/cmd",
+  ]
   solver-name = "gps-cdcl"
   solver-version = 1

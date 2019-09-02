@@ -1,5 +1,5 @@
 [[constraint]]
-    name = "github.com/waveywaves/helm-kustomize-plugin"
+    name = "github.com/waveywaves/helm-kelp"
     version = "0.1"
 
 [[constraint]]
