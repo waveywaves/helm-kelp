@@ -17,5 +17,3 @@ A Helm plugin which allows you to apply `kustomize` on helm charts before proces
 
 * optional `kelp` configuration in the chart home
 * `kelp` configuration allowing users to reuse helm template values after applying the `kustomization`.
-* Use `go templates` on the helm charts for parsing instead of just `regexp`.
-

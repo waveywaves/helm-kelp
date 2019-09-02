@@ -2,12 +2,36 @@
 
 
 [[projects]]
+  digest = "1:55388fd080150b9a072912f97b1f5891eb0b50df43401f8b75fb4273d3fec9fc"
+  name = "github.com/Masterminds/semver"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "c7af12943936e8c39859482e61f0574c2fd7fc75"
+  version = "v1.4.2"
+
+[[projects]]
+  digest = "1:1c772bea94f3ef8ce57a5b49a7d59314b4bca04fa16bb06531e7f052818338d0"
+  name = "github.com/helm/helm"
+  packages = ["pkg/chart"]
+  pruneopts = "UT"
+  revision = "4d7c681ba0aa43b45d122faa998c243422019be4"
+  version = "1.999.0"
+
+[[projects]]
   digest = "1:870d441fe217b8e689d7949fef6e43efbc787e50f200cb1e70dbca9204a1d6be"
   name = "github.com/inconshreveable/mousetrap"
   packages = ["."]
   pruneopts = "UT"
   revision = "76626ae9c91c4f2a10f34cad8ce83ea42c93bb75"
   version = "v1.0"
+
+[[projects]]
+  digest = "1:a06f785ebc402d5743421470d944caaf6d205e1b602baf3f2b3879f0bf7bdc2e"
+  name = "github.com/kubernetes/helm"
+  packages = ["pkg/log"]
+  pruneopts = "UT"
+  revision = "4d7c681ba0aa43b45d122faa998c243422019be4"
+  version = "1.999.0"
 
 [[projects]]
   digest = "1:e096613fb7cf34743d49af87d197663cfccd61876e2219853005a57baedfa562"
@@ -33,10 +57,19 @@
   pruneopts = "UT"
   revision = "352a7dc5bd765040b5026289b401cdb93ff86c1d"
 
+[[projects]]
+  digest = "1:4d2e5a73dc1500038e504a8d78b986630e3626dc027bc030ba5c75da257cdb96"
+  name = "gopkg.in/yaml.v2"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "51d6538a90f86fe93ac480b35f37b2be17fef232"
+  version = "v2.2.2"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/helm/helm/pkg/chart",
     "github.com/spf13/cobra",
     "github.com/waveywaves/helm-kustomize-plugin/cmd",
   ]
