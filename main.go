@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/waveywaves/helm-kustomize-plugin/cmd"
+	"github.com/waveywaves/helm-kelp/cmd"
 )
 
 func main() {

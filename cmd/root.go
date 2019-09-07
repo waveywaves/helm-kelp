@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"bytes"
 	"errors"
 	"fmt"
 	"io/ioutil"
@@ -11,9 +12,17 @@ import (
 	"text/template"
 	"time"
 
+	"sigs.k8s.io/kustomize/pkg/resource"
+
 	"github.com/helm/helm/pkg/chart"
 	"github.com/spf13/cobra"
-	//"sigs.k8s.io/kustomize/pkg/commands/build"
+
+	"sigs.k8s.io/kustomize/k8sdeps/transformer"
+	"sigs.k8s.io/kustomize/k8sdeps/validator"
+	"sigs.k8s.io/kustomize/pkg/commands/build"
+	"sigs.k8s.io/kustomize/pkg/fs"
+	"sigs.k8s.io/kustomize/pkg/plugins"
+	"sigs.k8s.io/kustomize/pkg/resmap"
 )
 
 // Chart is a helm package that contains metadata, a default config, zero or more
@@ -134,15 +143,7 @@ type Metadata struct {
 }
 
 var RootCmd = &cobra.Command{
-	Use:   "kelp",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
- examples and usage of using your application. For example:
- 
- Cobra is a CLI library for Go that empowers applications.
- This application is a tool to generate the needed files
- to quickly create a Cobra application.`,
-
+	Use: "kelp",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) > 0 {
 			cwd, err := os.Getwd()
@@ -159,17 +160,18 @@ var RootCmd = &cobra.Command{
 			for _, t := range templates {
 				processedTemplate := []string{}
 				if strings.HasSuffix(t.Name(), ".yaml") {
-					templatePath := path.Join(templatesPath, t.Name())
+					//templatePath := path.Join(templatesPath, t.Name())
 					/*
 						1st Stage
 						Convert all the golang templating stuff to strings
 					*/
-					processedTemplate = helmTemplate2KelpTemplate(templatePath)
+					//processedTemplate = helmTemplate2KelpTemplate(templatePath)
+
 					/*
 						2nd Stage
 						Override with kustumization values
 					*/
-					//processedTemplate = kelpApplyKustomization(processedTemplate)
+					kelpApplyKustomization(chartPath)
 					/*
 						3rd Stage
 						Convert back to helm template
@@ -183,8 +185,6 @@ var RootCmd = &cobra.Command{
 		} else {
 			panic(errors.New("No arguments given"))
 		}
-
-		//build.NewCmdBuild()
 	},
 }
 
@@ -200,4 +200,28 @@ func helmTemplate2KelpTemplate(tplPath string) []string {
 	tpl.Execute(os.Stdout, c)
 
 	return processedTemplate
+}
+
+func kelpApplyKustomization(kustPath string) {
+	// Only takes root of the kustomize
+	k := build.NewOptions(kustPath, "")
+
+	var resourceFactory *resource.Factory
+
+	v := validator.NewKustValidator()
+	pf := transformer.NewFactoryImpl()
+	rf := resmap.NewFactory(resourceFactory)
+	fSys := fs.MakeRealFS()
+
+	pluginConfig := plugins.DefaultPluginConfig()
+	pl := plugins.NewLoader(pluginConfig, rf)
+
+	b := bytes.Buffer{}
+	fmt.Printf("%#v", &b)
+
+	err := k.RunBuild(os.Stdout, v, fSys, rf, pf, pl)
+	if err != nil {
+		panic(err)
+	}
+
 }
