@@ -1,4 +1,4 @@
 resources:
-  - alpine-pod.yaml
+  - templates/alpine-pod.yaml
 commonLabels:
   kustomize: enabled

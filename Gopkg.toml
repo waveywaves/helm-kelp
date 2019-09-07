@@ -6,12 +6,8 @@
     name = "github.com/spf13/cobra"
     version = "0.0.5"
 
-[[constraint]]
-    name = "github.com/kubernetes-sigs/kustomize"
-    version = "v2.0.3"
-
 [prune]
     go-tests = true
     unused-packages = true
 
-required = ["github.com/kubernetes-sigs/kustomize"]
+required = ["sigs.k8s.io/kustomize/v3"]
