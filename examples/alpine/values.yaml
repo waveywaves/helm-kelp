@@ -1,6 +1,6 @@
 image:
   repository: alpine
-  tag: latest
+  tag: "3.11"
   pullPolicy: IfNotPresent
 
 restartPolicy: Never
